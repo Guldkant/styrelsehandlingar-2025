@@ -1,1 +1,1056 @@
-<!DOCTYPE html><html lang="sv"><head><meta charset="UTF-8"><title>Västervik Resort - 8-stegsmodellen</title></head><body><h1>Västervik Resort - Laddas upp...</h1></body></html>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Stegsplan - Västerviksresort (GK Resort AB)</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #E8C547;
+            --gold-dark: #B8941F;
+            --black: #1a1a1a;
+            --gray-dark: #2d2d2d;
+            --gray: #666;
+            --gray-light: #f0f0f0;
+            --sea-blue: #2980B9;
+            --sea-light: #5DADE2;
+            --summer-green: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: #fafafa;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0d4f6b 0%, #1a7a9e 60%, #2980B9 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+            animation: pulse 2s infinite;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+            animation: fadeInUp 1.6s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        .stats-bar {
+            background: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.4s; }
+        .stat-item:nth-child(3) { animation-delay: 0.6s; }
+        .stat-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 60px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--gold);
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section:nth-child(odd) {
+            animation: slideInRight 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid var(--gray-light);
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .section-number:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .section-title .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .goal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, #E8F6FD 0%, #D6EEF8 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--sea-light);
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(41, 128, 185, 0.3);
+        }
+
+        .goal-card h4 {
+            color: var(--black);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .goal-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #0d4f6b 0%, #1a7a9e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-top: 5px solid var(--gold);
+        }
+
+        .highlight-box h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(10px);
+        }
+
+        .action-card h4 {
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .action-card ul {
+            list-style: none;
+        }
+
+        .action-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .action-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+        }
+
+        .kpi-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .kpi-target {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--gold);
+        }
+
+        .timeline-item h4 {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: var(--gray);
+        }
+
+        .season-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--sea-blue) 0%, #1A5276 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .star-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+            border-left: 5px solid var(--gold);
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .warning-box h4 {
+            color: #7d5a00;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .warning-box p {
+            color: #6b4f00;
+            line-height: 1.8;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0d4f6b 0%, #1a7a9e 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold);
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+        }
+
+        .restaurant-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .rest-badge {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid var(--gold);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section { padding: 40px 20px; }
+            .section-title h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="hero-logo">
+        <h1>Västerviksresort</h1>
+        <div class="subtitle">8-Stegsplan — GK Resort AB</div>
+        <div class="tagline">Bello · Medi · Kajsas — Inte tappa det vi har. Bygga vidare på det bästa bolaget.</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">20%</div>
+                <div class="stat-label">Avkastning — redan nu</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Restauranger</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Sommar</div>
+                <div class="stat-label">Säsongsfokus</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">🏆</div>
+                <div class="stat-label">Bästa bolaget</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- ÖVERSIKT -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">🌊</div>
+                <div class="section-title">
+                    <h2>Västerviksresort i Fokus</h2>
+                    <div class="subtitle">Tre restauranger. Ett bolag. Fantastisk avkastning.</div>
+                </div>
+            </div>
+
+            <div class="restaurant-badges">
+                <div class="rest-badge" style="background: rgba(41,128,185,0.4);">🍽️ Bello</div>
+                <div class="rest-badge" style="background: rgba(39,174,96,0.35);">🌿 Medi</div>
+                <div class="rest-badge" style="background: rgba(212,175,55,0.35);">☀️ Kajsas</div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Nulägesanalys — Västerviksresort</h3>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>Största utmaning:</strong> Inte tappa det vi har — bevara styrkan, kulturen och resultaten
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; opacity: 0.9;">
+                    <strong>Styrkor att vårda och bygga på:</strong>
+                </p>
+                <div style="margin-bottom: 25px;">
+                    <span class="season-badge">💰 20% Avkastning</span>
+                    <span class="season-badge">🏆 Bästa Bolaget</span>
+                    <span class="season-badge">☀️ Sommardestination</span>
+                    <span class="season-badge">🤝 Separat men sammanhållet</span>
+                </div>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 25px; opacity: 0.9;">
+                    <strong>Strategisk position:</strong>
+                </p>
+                <div>
+                    <span class="star-badge">→ Tre starka koncept</span>
+                    <span class="star-badge">→ Lysingsbadet-läget</span>
+                    <span class="star-badge">→ Bevisad lönsamhet</span>
+                    <span class="star-badge">→ Jonas Setllin i täten</span>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Kärnprincip för Västerviksresort</h4>
+                <p>20% avkastning är <strong>exceptionellt</strong> i restaurangbranschen. Det primära målet är att <strong>förstå varför det funkar</strong> — och se till att det fortsätter. Förändra inte det som inte behöver förändras. Stabilitet och kontinuitet är strategiska val.</p>
+            </div>
+
+            <h3 style="margin: 40px 0 25px 0; font-size: 1.8rem;">Tre Restauranger — En Styrka</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Bello</h4>
+                    <p>Del av Lysingsbadet-komplexet. <strong>Eget koncept, eget uttryck.</strong> Håll det skarpt och definierat. Bello är Bello — inte en kopia av de andra.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Medi</h4>
+                    <p>Eget koncept med <strong>tydlig identitet.</strong> Tre restauranger på samma resort kräver att de är tillräckligt olika för att inte konkurrera med varandra — de kompletterar.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Kajsas</h4>
+                    <p>Sommaratmosfär och karaktär. <strong>Varje restaurang löser en annan situation</strong> för gästen. Tillsammans täcker de hela besöket på Lysingsbadet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 1: OPERATIV NÄRVARO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-title">
+                    <h2>Operativ Närvaro — Säsongsanpassad</h2>
+                    <div class="subtitle">Sommarsäsong med full kraft</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
+                Västerviksresort är <strong>sommarsäsong.</strong> Jonas Setllin leder tre restauranger parallellt — det kräver tydlig struktur och mandat för att fungera utan att Erik behöver vara operativt involverad.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Jonas Setllin</div>
+                    <div class="kpi-value">Platschef</div>
+                    <div class="kpi-target">Ansvarig för alla tre</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Säsong</div>
+                    <div class="kpi-value">Sommar</div>
+                    <div class="kpi-target">Intensiv drift</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Avkastning nu</div>
+                    <div class="kpi-value">20%</div>
+                    <div class="kpi-target">Bevara — minst</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Jonas Setllin — Ryggraden i Resortet</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Mandat & Ansvar</h4>
+                        <ul>
+                            <li>Fullt operativt ansvar för Bello, Medi och Kajsas</li>
+                            <li>Rekrytering och personal på plats</li>
+                            <li>Daglig drift och kvalitetskontroll</li>
+                            <li>Direktrapportering till Erik månadsvis</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Struktur för tre restauranger</h4>
+                        <ul>
+                            <li>Tydliga ansvarsområden per restaurang</li>
+                            <li>Dagliga morgonmöten med respektive kök/hall-ansvarig</li>
+                            <li>Veckovis gemensam genomgång av alla tre</li>
+                            <li>En P&L per restaurang — tydlig uppföljning</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Kommunikation uppåt</h4>
+                        <ul>
+                            <li>Månadsrapport till Erik med siffror + analys</li>
+                            <li>Flaggar avvikelser omedelbart</li>
+                            <li>Presenterar egna resultat på ledningsgenomgång</li>
+                            <li>Äger frågorna — lyfter inte allt uppåt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Försäsong (Mar-Maj): Förbered</h4>
+                    <ul>
+                        <li>Rekrytering klar i god tid</li>
+                        <li>Menyplanering och inköpsavtal på plats</li>
+                        <li>Jonas bekräftar struktur och ansvarsgränser</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Högsäsong (Jun-Aug): Leverera</h4>
+                    <ul>
+                        <li>Full bemanning och kapacitet alla tre restauranger</li>
+                        <li>Veckovis uppföljning Jonas–Erik</li>
+                        <li>Löpande justeringar utan att tappa fart</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Eftersäsong (Sep-Okt): Utvärdera</h4>
+                    <ul>
+                        <li>Genomgång: Vad fungerade? Vad kan bli bättre?</li>
+                        <li>Bekräfta: Har vi behållit 20%?</li>
+                        <li>Planera nästa sommar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 2: BEVARA DET SOM FUNKAR -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <div class="section-title">
+                    <h2>Bevara Det Som Funkar</h2>
+                    <div class="subtitle">20% avkastning är inte en slump — förstå varför</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.2rem; color: var(--sea-blue); font-weight: 600; margin-bottom: 30px; padding: 20px; background: #E8F6FD; border-left: 4px solid var(--sea-blue); border-radius: 8px;">
+                🏆 KÄRNINSIKT: Västerviksresort är GK-koncernens bäst presterande enhet. Strategin är inte att förändra — det är att förstå, dokumentera och säkra.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Avkastningsmål</div>
+                    <div class="kpi-value">20%+</div>
+                    <div class="kpi-target">Bibehåll — bygg inte bort det</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Gästnöjdhet</div>
+                    <div class="kpi-value">Mät</div>
+                    <div class="kpi-target">Förstå vad gästen älskar</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Personalstabilitet</div>
+                    <div class="kpi-value">Nyckeln</div>
+                    <div class="kpi-target">Behåll kärnan säsong för säsong</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Vad Gör Västerviksresort Bra?</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Dokumentera framgångsformeln</h4>
+                        <ul>
+                            <li>Vad är de 3-5 sakerna som driver resultaten?</li>
+                            <li>Är det läget? Koncepten? Jonas? Kulturen?</li>
+                            <li>Skriv ner det — gör det replikerbart</li>
+                            <li>Säkra mot personberoendet</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Skydda kulturen</h4>
+                        <ul>
+                            <li>Sommarjobb-kulturen på Lysingsbadet är unik</li>
+                            <li>Återanställ nyckelpersoner varje säsong</li>
+                            <li>Jonas bär kulturen — stärk hans roll</li>
+                            <li>Låt inte "koncernhomogenisering" döda det</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Separat men sammanhållet</h4>
+                        <ul>
+                            <li>Operativt självständigt — det funkar</li>
+                            <li>Ekonomisk rapportering in i GK-strukturen</li>
+                            <li>Dela best practice med övriga enheter</li>
+                            <li>Västerviksresort = inspirationskällan internt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Nu: Dokumentera framgångsformeln</h4>
+                    <ul>
+                        <li>Erik + Jonas: Identifiera de 5 kritiska faktorerna</li>
+                        <li>Nedskrivet — inte bara i Jonas huvud</li>
+                        <li>Utgångspunkt för all framtida strategi</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Inför varje säsong: Säkra kärnan</h4>
+                    <ul>
+                        <li>Återrekrytering av nyckelpersonal tidigt</li>
+                        <li>Inga stora konceptförändringar utan analys</li>
+                        <li>Bekräfta att kulturen lever</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Sprid till resten av GK</h4>
+                    <ul>
+                        <li>Lyft fram Västerviksresort som intern förebild</li>
+                        <li>Vad kan Guldkant Västervik, Vimmerby och Sälen lära?</li>
+                        <li>Jonas är en resurs för hela koncernen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 3: TRE KONCEPT, TRE PERSONLIGHETER -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <div class="section-title">
+                    <h2>Tre Koncept — Tre Personligheter</h2>
+                    <div class="subtitle">Bello, Medi och Kajsas får inte bli samma restaurang</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
+                Att ha tre restauranger på samma resort är en styrka <strong>bara om de är tydligt differentierade.</strong> Gästen ska välja baserat på vad de vill ha — inte gissa sig fram.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Bello</div>
+                    <div class="kpi-value">Kvälls-</div>
+                    <div class="kpi-target">Mat & stämning</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Medi</div>
+                    <div class="kpi-value">Dags-</div>
+                    <div class="kpi-target">Lunch & avslappnat</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Kajsas</div>
+                    <div class="kpi-value">Sommar-</div>
+                    <div class="kpi-target">Sol, gäng & glädje</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Differentiering — Nyckeln till Tre Vinnare</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Tydliga roller</h4>
+                        <ul>
+                            <li>Varje restaurang äger en "situation"</li>
+                            <li>Intern konkurrens är ett misslyckande</li>
+                            <li>Gästen ska vilja besöka alla tre</li>
+                            <li>Meny, pris och känsla skiljer sig åt</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Kommunikation utåt</h4>
+                        <ul>
+                            <li>Berätta vad varje restaurang är</li>
+                            <li>Tydliga signaturrätter per koncept</li>
+                            <li>Paket: "Upplev alla tre under din vistelse"</li>
+                            <li>Lysingsbadet-gästen = er bästa kund</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Gemensam infrastruktur</h4>
+                        <ul>
+                            <li>Gemensamma inköp där det lönar sig</li>
+                            <li>Delad personalpool vid behov</li>
+                            <li>En bokningskanal för alla tre</li>
+                            <li>Jonas koordinerar — inte konkurrar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 5: EKONOMI & UPPFÖLJNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <div class="section-title">
+                    <h2>Ekonomi & Uppföljning</h2>
+                    <div class="subtitle">Håll koll på 20% — per restaurang</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
+                20% total avkastning är fantastiskt — men <strong>vilken av de tre restaurangerna driver resultaten?</strong> Tydlig ekonomisk uppföljning per enhet ger Jonas och Erik rätt beslutsstöd.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">P&L per restaurang</div>
+                    <div class="kpi-value">3st</div>
+                    <div class="kpi-target">Separat uppföljning</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Rapportering</div>
+                    <div class="kpi-value">Månads</div>
+                    <div class="kpi-target">Jonas presenterar</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Avkastning</div>
+                    <div class="kpi-value">20%+</div>
+                    <div class="kpi-target">Bibehåll minimum</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Ekonomisk Struktur</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Per restaurang</h4>
+                        <ul>
+                            <li>Omsättning, kostnad, täckningsbidrag</li>
+                            <li>Personalkostnad som % av omsättning</li>
+                            <li>Food cost per restaurang</li>
+                            <li>Jämförelse säsong för säsong</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Jonas presenterar</h4>
+                        <ul>
+                            <li>Månadsrapport med analys — inte bara siffror</li>
+                            <li>"Här är vi. Det här är varför."</li>
+                            <li>Äger frågorna — ansvarig för resultaten</li>
+                            <li>Erik coachar, kontrollerar inte</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Triggers för action</h4>
+                        <ul>
+                            <li>Om avkastning sjunker under 15% → omedelbar analys</li>
+                            <li>Om en restaurang underperformar → triage</li>
+                            <li>Avvikelser flaggas direkt — inte på månadsmötet</li>
+                            <li>Fira resultat — 20% är fantastiskt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 8: OUTNYTTJAD POTENTIAL -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <div class="section-title">
+                    <h2>Outnyttjad Potential</h2>
+                    <div class="subtitle">Försiktig tillväxt — utan att riskera det vi har</div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Viktigt: Tillväxt med försiktighet</h4>
+                <p>Varje förändring på Västerviksresort bär risken att rubba det som funkar. Nya initiativ ska <strong>testas i liten skala</strong> och inte genomföras om de riskerar att distrahera Jonas eller urholka kulturen. Tillväxt är välkommen — men inte på bekostnad av 20%-avkastningen.</p>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Potentiell tillväxt</div>
+                    <div class="kpi-value">+10%</div>
+                    <div class="kpi-target">Utan att riskera basen</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Säsongsförlängning</div>
+                    <div class="kpi-value">Utforska</div>
+                    <div class="kpi-target">Vår/höst-potential</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Event</div>
+                    <div class="kpi-value">Mer</div>
+                    <div class="kpi-target">Lysingsbadets naturliga arena</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Möjligheter att Utforska</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Event på Lysingsbadet</h4>
+                        <ul>
+                            <li>Naturlig scen för sommarevents</li>
+                            <li>Musikkvällar, temafester, bufféer</li>
+                            <li>Samarbete med Lysingsbadet-resort</li>
+                            <li>Förlänger besöket — mer intäkt per gäst</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Säsongsförlängning</h4>
+                        <ul>
+                            <li>Kan vi öppna 2-3 veckor längre?</li>
+                            <li>Vår (maj) och tidig höst (sep)?</li>
+                            <li>Mät lönsamhet — inte bara omsättning</li>
+                            <li>Pilottest med minimal risk</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Catering & Grupper</h4>
+                        <ul>
+                            <li>Konferensgrupper till Lysingsbadet</li>
+                            <li>Bröllop och privatfester</li>
+                            <li>Catering på resort-området</li>
+                            <li>Komplement till restaurangdriften</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Säsong 1: Stabilitet och dokumentation</h4>
+                    <ul>
+                        <li>Bevara 20%+ avkastning — det är målet</li>
+                        <li>Dokumentera framgångsformeln</li>
+                        <li>Inga stora förändringar</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Säsong 2: Pilottesta</h4>
+                    <ul>
+                        <li>1-2 event under säsongen — mät effekten</li>
+                        <li>Säsongsförlängning som pilot (2-3 veckor)</li>
+                        <li>Jonas driver — Erik stödjer</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Säsong 3+: Skala det som funkar</h4>
+                    <ul>
+                        <li>Behåll allt som bevisat lönsamt</li>
+                        <li>Skala event om det gav marginal</li>
+                        <li>Västerviksresort = GK:s flaggskepp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAMMANFATTNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">✓</div>
+                <div class="section-title">
+                    <h2>Sammanfattning — Västerviksresort</h2>
+                    <div class="subtitle">Bevara. Förstå. Bygg försiktigt.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Framgångsformeln för Västerviksresort</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>1. Bevara det som funkar:</strong> 20% avkastning är exceptionellt — förstå varför, skydda det och dokumentera det
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>2. Jonas Setllin äger frågan:</strong> Fullt mandat, tydligt ansvar, rapporterar månadsvis — inte dagligen
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>3. Tre koncept — tre personligheter:</strong> Bello, Medi och Kajsas ska vara tydligt differentierade och komplettera varandra
+                </p>
+                <p style="font-size: 1.2rem; opacity: 0.95;">
+                    <strong>4. Tillväxt med försiktighet:</strong> Pilottesta, mät lönsamhet, skala bara det som bevisligen funkar
+                </p>
+            </div>
+
+            <div style="margin: 40px 0;">
+                <h3 style="margin-bottom: 20px;">Prioriterad Ordning</h3>
+                <div class="goal-grid">
+                    <div class="goal-card">
+                        <h4>Försäsong (Mar-Maj)</h4>
+                        <p><strong>Förbered noggrant.</strong> Rekrytering klar tidigt. Menyplanering. Jonas bekräftar struktur. Inga överraskningar när det väl är dags.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Högsäsong (Jun-Aug)</h4>
+                        <p><strong>Leverera och bevara.</strong> Full kapacitet alla tre restauranger. Veckovis uppföljning. Flagga avvikelser direkt. Njut av att det funkar.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Eftersäsong (Sep-Okt)</h4>
+                        <p><strong>Utvärdera och lär.</strong> Har vi nått 20%? Vad kan bli bättre? Vad ska vi absolut inte ändra? Planera nästa sommar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-top: 30px; padding: 20px; background: #E8F6FD; border-left: 4px solid var(--sea-blue); border-radius: 8px;">
+                <strong>Platschef:</strong> Jonas Setllin<br>
+                <strong>Restauranger:</strong> Bello · Medi · Kajsas<br>
+                <strong>Säsong:</strong> Sommar<br>
+                <strong>Avkastning:</strong> 20% — behåll och bygg på<br>
+                <strong>Kärnprincip:</strong> Inte tappa det vi har — Bästa bolaget i GK
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="footer-logo">
+        <h3>Back to Glory</h3>
+        <div class="restaurant-badges" style="justify-content: center;">
+            <div class="rest-badge">🍽️ Bello</div>
+            <div class="rest-badge">🌿 Medi</div>
+            <div class="rest-badge">☀️ Kajsas</div>
+        </div>
+        <p style="font-size: 1.3rem; margin-top: 15px;">GK Resort AB | Västerviksresort | Lysingsbadet</p>
+        <p style="margin-top: 25px; opacity: 0.8;">Platschef: Jonas Setllin | 20% avkastning. Bästa bolaget. Bevara och bygg.</p>
+    </div>
+
+</body>
+</html>

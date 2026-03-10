@@ -1,5 +1,1021 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head><meta charset="UTF-8"><title>Viktors By Sälen - 8-stegsmodellen</title></head>
-<body><h1>Viktors By Sälen - 8-stegsmodellen</h1><p>Placeholder - ladda upp den riktiga filen</p></body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Stegsplan - Viktors by Guldkant (Sälen)</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #E8C547;
+            --gold-dark: #B8941F;
+            --black: #1a1a1a;
+            --gray-dark: #2d2d2d;
+            --gray: #666;
+            --gray-light: #f0f0f0;
+            --blue: #4A90E2;
+            --winter-blue: #5DADE2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: #fafafa;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+            animation: pulse 2s infinite;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+            animation: fadeInUp 1.6s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        .stats-bar {
+            background: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.4s; }
+        .stat-item:nth-child(3) { animation-delay: 0.6s; }
+        .stat-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 60px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--gold);
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section:nth-child(odd) {
+            animation: slideInRight 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid var(--gray-light);
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .section-number:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .section-title .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .goal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, #E8F4F8 0%, #D6EAF8 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--winter-blue);
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .goal-card h4 {
+            color: var(--black);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .goal-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-top: 5px solid var(--gold);
+        }
+
+        .highlight-box h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(10px);
+        }
+
+        .action-card h4 {
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .action-card ul {
+            list-style: none;
+        }
+
+        .action-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .action-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+        }
+
+        .kpi-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .kpi-target {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--gold);
+        }
+
+        .timeline-item h4 {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: var(--gray);
+        }
+
+        .season-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--winter-blue) 0%, #3498DB 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .potential-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold);
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="hero-logo">
+        <h1>Viktors by Guldkant</h1>
+        <div class="subtitle">8-Stegsplan för Sälen</div>
+        <div class="tagline">Vintersäsong. Perfekt läge. Outnyttjad potential.</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">15%</div>
+                <div class="stat-label">Lönsamhetsmål</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Månader säsong</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Vinter-fokus</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">⛷️</div>
+                <div class="stat-label">Skid-destination</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- ÖVERSIKT -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">⛰️</div>
+                <div class="section-title">
+                    <h2>Sälen i Fokus</h2>
+                    <div class="subtitle">Perfekt läge med outnyttjad potential</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Nulägesanalys - Viktors by Sälen</h3>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>Största utmaning:</strong> Tillväxt och outnyttjad potential
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; opacity: 0.9;">
+                    <strong>Styrkor att bygga på:</strong>
+                </p>
+                <div style="margin-bottom: 25px;">
+                    <span class="season-badge">❄️ Starkt Varumärke</span>
+                    <span class="season-badge">⛷️ Perfekt Läge</span>
+                    <span class="season-badge">👥 Bra Personal</span>
+                    <span class="season-badge">🏔️ Skid-destination</span>
+                </div>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 25px; opacity: 0.9;">
+                    <strong>Outnyttjad Potential:</strong>
+                </p>
+                <div>
+                    <span class="potential-badge">→ Hotellintegrering</span>
+                    <span class="potential-badge">→ Après-ski</span>
+                    <span class="potential-badge">→ Paketlösningar</span>
+                    <span class="potential-badge">→ Event vintertid</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 40px 0 25px 0; font-size: 1.8rem;">Säsongsbaserad Strategi</h3>
+            
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Vintersäsong (Dec-Apr)</h4>
+                    <p><strong>5 månaders intensiv drift.</strong> Maximera intäkter under högsäsong. Fokus: Skidåkare, familjer, konferenser. Outnyttjad potential i après-ski och events.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Sommar/Höst-potential</h4>
+                    <p>Utforska <strong>sommaröppet?</strong> Vandring, cykling, konferenser. Eller stänga helt och optimera för vinter. Beslut baserat på lönsamhetsanalys.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Hotell + Restaurang</h4>
+                    <p>Unik fördel: <strong>Egen hotell.</strong> Paketlösningar, all-inclusive, konferens. Integration restaurang + hotell = högre marginal och kundvärde.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 1: SÄSONGSANPASSAD NÄRVARO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-title">
+                    <h2>Operativ Närvaro - Säsongsanpassad</h2>
+                    <div class="subtitle">Intensiv vintersäsong (5 månader)</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
+                Sälen är <strong>säsongsbaserat</strong> (Dec-Apr). Operativ närvaro måste vara <strong>intensiv under vintern</strong> och strategisk under lågsäsong.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Platschef vintertid</div>
+                    <div class="kpi-value">50-60h</div>
+                    <div class="kpi-target">Per vecka högsäsong</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Personal vintertid</div>
+                    <div class="kpi-value">30-50</div>
+                    <div class="kpi-target">Anställda i säsong</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Sommartid</div>
+                    <div class="kpi-value">Stängt?</div>
+                    <div class="kpi-target">Eller sommaröppet?</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Säsongsstrategi</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Högsäsong (Dec-Apr)</h4>
+                        <ul>
+                            <li>Full bemanning och kapacitet</li>
+                            <li>Henrik Arkåsen på plats 6-7 dagar/vecka</li>
+                            <li>Maximera varje dag - ingen dag är "vanlig"</li>
+                            <li>Après-ski varje dag kl 15-19</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Mellansäsong (Nov, Maj)</h4>
+                        <ul>
+                            <li>Reducerad bemanning</li>
+                            <li>Förbereda/avsluta säsong</li>
+                            <li>Underhåll och renovering</li>
+                            <li>Utvärdera och planera nästa säsong</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Lågsäsong (Jun-Okt)</h4>
+                        <ul>
+                            <li>Utvärdera: Sommaröppet eller stängt?</li>
+                            <li>Om öppet: Vandring, cykling, konferens</li>
+                            <li>Om stängt: Personal semester, fokus annat</li>
+                            <li>Strategisk planering för nästa vinter</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Vintersäsong 1: Maximera</h4>
+                    <ul>
+                        <li>Full fokus på vinter (Dec-Apr)</li>
+                        <li>Mäta: Omsättning per dag, beläggning, gästnöjdhet</li>
+                        <li>Testa: Après-ski events, paketlösningar</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Sommaren: Beslut</h4>
+                    <ul>
+                        <li>Lönsamhetsanalys: Sommaröppet vs stängt</li>
+                        <li>Om pilot: Öppna 1-2 månader sommaren (Jun-Jul)</li>
+                        <li>Utvärdera: Värt det eller inte?</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt: Optimera säsong</h4>
+                    <ul>
+                        <li>Beslut taget: Sommaröppet eller vinter-only</li>
+                        <li>Personalbemanning säsongsanpassad</li>
+                        <li>Maximera lönsamhet under verksam tid</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 2: EVENT & APRÈS-SKI -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <div class="section-title">
+                    <h2>Event & Après-Ski - Säsongens Hjärta</h2>
+                    <div class="subtitle">Skapa destination inom destinationen</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.2rem; color: var(--winter-blue); font-weight: 600; margin-bottom: 30px; padding: 20px; background: #E8F4F8; border-left: 4px solid var(--winter-blue); border-radius: 8px;">
+                ⛷️ KRITISKT FÖR SÄLEN: Après-ski och events är HJÄRTAT i vintersäsongen!
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Après-ski</div>
+                    <div class="kpi-value">Dagligen</div>
+                    <div class="kpi-target">Kl 15-19 hela säsongen</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Events/månad</div>
+                    <div class="kpi-value">8-12</div>
+                    <div class="kpi-target">Under vintersäsong</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Omsättning från après</div>
+                    <div class="kpi-value">30-40%</div>
+                    <div class="kpi-target">Av dagsomsättning</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Event-Strategi - Vintersäsong</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Daglig Après-Ski</h4>
+                        <ul>
+                            <li>Kl 15-19 varje dag (backarna stänger 16:00)</li>
+                            <li>DJ eller live musik minst 3 dagar/vecka</li>
+                            <li>Happy hour 15-17</li>
+                            <li>Skapa Sälens bästa après-ski-upplevelse</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Veckoevent</h4>
+                        <ul>
+                            <li>Måndagar: Familjekväll med barnaktiviteter</li>
+                            <li>Onsdagar: Live-band / större artister</li>
+                            <li>Fredagar: Stor après med DJ till 23:00</li>
+                            <li>Lördagar: Temafester (80-tal, disco, etc)</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Säsongens Höjdpunkter</h4>
+                        <ul>
+                            <li>Nyår: Stor galamiddag + fest</li>
+                            <li>Sportlov v8/9: Extra barnfokus</li>
+                            <li>Påsk: Påskbuffé och familjeevent</li>
+                            <li>Säsongavslutning: Tack-fest i april</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Säsong 1: Etablera après-ski</h4>
+                    <ul>
+                        <li>Daglig après-ski kl 15-19 (hela säsongen)</li>
+                        <li>DJ minst 3 dagar/vecka</li>
+                        <li>4-6 storevent under säsongen</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Säsong 2-3: Skala och bli destination</h4>
+                    <ul>
+                        <li>Känd som "bästa après-ski i Sälen"</li>
+                        <li>8-12 event per månad</li>
+                        <li>Samarbeten med skidanläggningar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 5: PAKETLÖSNINGAR & B2B -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <div class="section-title">
+                    <h2>Paketlösningar & B2B-försäljning</h2>
+                    <div class="subtitle">Hotell + Restaurang = Unik fördel</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
+                Viktors by har <strong>egen hotell</strong> - detta är en ENORM fördel som måste utnyttjas fullt ut genom paketlösningar och B2B-försäljning.
+            </p>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Paketförsäljning</div>
+                    <div class="kpi-value">40%</div>
+                    <div class="kpi-target">Av boenden med paket</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">B2B-kunder</div>
+                    <div class="kpi-value">15-20</div>
+                    <div class="kpi-target">Företag per säsong</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Konferenser</div>
+                    <div class="kpi-value">8-12</div>
+                    <div class="kpi-target">Per vintersäsong</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Paket & B2B-Strategi</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Familjepaket</h4>
+                        <ul>
+                            <li>2-4 nätter hotell + frukost</li>
+                            <li>Middagar ingår (barnmeny)</li>
+                            <li>Liftpass vid bokning (samarbete)</li>
+                            <li>Pris: Konkurrenskraftigt all-in</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Företagskonferens</h4>
+                        <ul>
+                            <li>Konferenslokal + hotellrum</li>
+                            <li>Lunch, middag, après-ski ingår</li>
+                            <li>Teambuilding-aktiviteter (skidor)</li>
+                            <li>Målgrupp: Stockholm, Göteborg, Oslo</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Weekend-paket</h4>
+                        <ul>
+                            <li>Fre-Sön: Hotell + alla måltider</li>
+                            <li>Après-ski och event ingår</li>
+                            <li>Enkel bokning online</li>
+                            <li>Marknadsföring: "Allt på ett ställe"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">B2B-Försäljning</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Målgrupper</h4>
+                    <p><strong>Företag i Stockholm, Göteborg, Oslo.</strong> Distans till Sälen: 4-5 timmar bil. Perfekt för vinterkonferenser och teambuilding.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Säljprocess</h4>
+                    <p>Aktiv utåtriktad försäljning sept-nov. <strong>30-40 företagskontakter.</strong> Erbjud paket: Konferens + hotell + mat + après-ski.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Samarbeten</h4>
+                    <p>Samarbeta med <strong>skidanläggningar</strong> för paketlösningar. Samarbeta med researrangörer. Egna bokningskanaler online.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Försäsong (Sep-Nov): Aktiv B2B-försäljning</h4>
+                    <ul>
+                        <li>Kontakta 30-40 företag (Stockholm, Göteborg, Oslo)</li>
+                        <li>Skapa paketlösningar med priser</li>
+                        <li>Boka in första konferenserna</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Säsong (Dec-Apr): Leverera paket</h4>
+                    <ul>
+                        <li>8-12 konferenser under säsongen</li>
+                        <li>40% av hotellgäster bokar paket</li>
+                        <li>Samla feedback för nästa säsong</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Eftersäsong (Maj-Aug): Planera nästa</h4>
+                    <ul>
+                        <li>Utvärdera: Vilka paket sålde bäst?</li>
+                        <li>Förhandla nya samarbeten</li>
+                        <li>Förbättra paket för nästa vinter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 8: OUTNYTTJAD POTENTIAL -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <div class="section-title">
+                    <h2>Outnyttjad Potential - Sälen</h2>
+                    <div class="subtitle">Nya intäktsströmmar vintertid</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Tillväxtpotential</div>
+                    <div class="kpi-value">+20-30%</div>
+                    <div class="kpi-target">Från nya områden</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Sommaröppet?</div>
+                    <div class="kpi-value">Test</div>
+                    <div class="kpi-target">Lönsamhetsanalys</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Integration hotell</div>
+                    <div class="kpi-value">+15%</div>
+                    <div class="kpi-target">Marginalförbättring</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Outnyttjad Potential - Sälen</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Hotellintegration - PRIORITET #1</h4>
+                        <ul>
+                            <li>All-inclusive paket (rumsrabatt + mat)</li>
+                            <li>Frukost, lunch, middag, après ingår</li>
+                            <li>Enklare för gäst, högre marginal för oss</li>
+                            <li>Korsförsäljning mellan hotell och restaurang</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Sommaröppet - Utforska</h4>
+                        <ul>
+                            <li>Sälen sommartid: Vandring, cykling, fiske</li>
+                            <li>Konferenser sommartid (lugnare, billigare)</li>
+                            <li>Test: Öppna Jun-Jul (2 månader pilot)</li>
+                            <li>Beslut: Om lönsamt → fortsätt, annars stäng</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Catering & Externa Event</h4>
+                        <ul>
+                            <li>Catering till andra hotell i Sälen</li>
+                            <li>Firmafester och bröllop vintertid</li>
+                            <li>Skidskolor och barngrupper (lunch)</li>
+                            <li>Samarbete med eventarrangörer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Vad Ska Vi Göra Annorlunda?</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Beslut: Sommar eller Inte?</h4>
+                    <p><strong>Lönsamhetsanalys krävs.</strong> Öppna pilot 2 månader (Jun-Jul). Mät: Omsättning, kostnader, beläggning. Beslut: Fortsätt eller stäng.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Optimera Vintersäsongen</h4>
+                    <p>Fokusera på <strong>de 5 månaderna</strong> vi HAR öppet. Maximera varje dag. Ingen "död dag" under vintern. Après-ski = nyckeln.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Kill Your Darlings</h4>
+                    <p>Om sommaren inte är lönsam: <strong>Stäng.</strong> Fokusera 100% på vinter. Använd sommaren för semester, underhåll, planering.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementering</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Vintersäsong 1: Maximera vinter</h4>
+                    <ul>
+                        <li>Full fokus: Hotellintegration, paket, après-ski</li>
+                        <li>Mål: +15% omsättning från integration</li>
+                        <li>Utvärdera: Sommaröppet ja eller nej?</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Sommar (Jun-Jul): Pilot</h4>
+                    <ul>
+                        <li>Öppna 2 månader som test</li>
+                        <li>Minimal bemanning, enkel meny</li>
+                        <li>Mät lönsamhet noggrant</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Beslut & Långsiktigt</h4>
+                    <ul>
+                        <li>Om sommar lönsam: Fortsätt Jun-Aug</li>
+                        <li>Om ej lönsam: Stäng, fokus 100% vinter</li>
+                        <li>Outnyttjad potential: +20-30% tillväxt från nya områden</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAMMANFATTNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">✓</div>
+                <div class="section-title">
+                    <h2>Sammanfattning - Sälen</h2>
+                    <div class="subtitle">Säsongsbaserad framgång</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Framgångsformeln för Viktors by Sälen</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>1. Maximera vintersäsongen (Dec-Apr):</strong> Après-ski dagligen, events varje vecka, paketlösningar
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>2. Hotellintegration:</strong> All-inclusive paket, korsförsäljning, högre marginal
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    <strong>3. B2B-försäljning:</strong> Företagskonferenser Stockholm/Göteborg/Oslo
+                </p>
+                <p style="font-size: 1.2rem; opacity: 0.95;">
+                    <strong>4. Beslut om sommar:</strong> Pilot → Lönsamhetsanalys → Fortsätt eller stäng
+                </p>
+            </div>
+
+            <div style="margin: 40px 0;">
+                <h3 style="margin-bottom: 20px;">Prioriterad Ordning - Sälen</h3>
+                <div class="goal-grid">
+                    <div class="goal-card">
+                        <h4>Försäsong (Sep-Nov)</h4>
+                        <p><strong>B2B-försäljning intensiv.</strong> Kontakta företag, skapa paket, boka konferenser. Förbered après-ski och event-kalender.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Högsäsong (Dec-Apr)</h4>
+                        <p><strong>Leverera magisk upplevelse.</strong> Daglig après-ski, paketlösningar, hotellintegration. Varje dag räknas - ingen "död dag".</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Eftersäsong (Maj-Aug)</h4>
+                        <p><strong>Utvärdera och planera.</strong> Sommaröppet pilot? Lönsamhetsanalys. Förbered nästa vintersäsong. Personal semester.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; color: var(--gray); margin-top: 30px; padding: 20px; background: #E8F4F8; border-left: 4px solid var(--winter-blue); border-radius: 8px;">
+                <strong>Platschef:</strong> Henrik Arkåsen<br>
+                <strong>Säsong:</strong> December - April (5 månader)<br>
+                <strong>Målsättning:</strong> 15% lönsamhet, Hotellintegration, Bästa après-ski i Sälen<br>
+                <strong>Unika fördelar:</strong> Egen hotell, Perfekt läge, Outnyttjad potential
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="footer-logo">
+        <h3>Back to Glory</h3>
+        <p style="font-size: 1.3rem; margin-top: 15px;">Viktors by Guldkant | Sälen | Vinterns destination</p>
+        <p style="margin-top: 25px; opacity: 0.8;">Platschef: Henrik Arkåsen | 5 månader. 1 mål. Maximal upplevelse.</p>
+    </div>
+
+</body>
 </html>

@@ -1,1 +1,1547 @@
-<!DOCTYPE html><html lang="sv"><head><meta charset="UTF-8"><title>Guldkant Västervik - 8-stegsmodellen</title></head><body><h1>Guldkant Västervik - Laddas upp...</h1></body></html>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Stegsplan - Guldkant Västervik</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #E8C547;
+            --gold-dark: #B8941F;
+            --black: #1a1a1a;
+            --gray-dark: #2d2d2d;
+            --gray: #666;
+            --gray-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: #fafafa;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--gray-dark) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+            animation: pulse 2s infinite;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+            animation: fadeInUp 1.6s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        .stats-bar {
+            background: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.4s; }
+        .stat-item:nth-child(3) { animation-delay: 0.6s; }
+        .stat-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 60px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--gold);
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section:nth-child(odd) {
+            animation: slideInRight 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid var(--gray-light);
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .section-number:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .section-title .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            background: var(--gray-light);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 600;
+            transition: width 2s ease;
+        }
+
+        .goal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .goal-card h4 {
+            color: var(--black);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .goal-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--gold);
+        }
+
+        .timeline-item h4 {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: var(--gray);
+        }
+
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+        }
+
+        .kpi-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .kpi-target {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+            color: var(--gold-dark);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--black) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-top: 5px solid var(--gold);
+        }
+
+        .highlight-box h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(10px);
+        }
+
+        .action-card h4 {
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .action-card ul {
+            list-style: none;
+        }
+
+        .action-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .action-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--black) 0%, var(--gray-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold);
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .bar-chart {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="hero-logo">
+        <h1>Guldkant Västervik</h1>
+        <div class="subtitle">8-Stegsplan för långsiktig framgång</div>
+        <div class="tagline">Back to Glory - Västervik</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">15%</div>
+                <div class="stat-label">Lönsamhetsmål</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Strategiska steg</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">365</div>
+                <div class="stat-label">Dagar per år</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.0+</div>
+                <div class="stat-label">Målbetyg Google</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- VISION & MÅL -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">🎯</div>
+                <div class="section-title">
+                    <h2>Vision & Mål</h2>
+                    <div class="subtitle">Gemenskap med Guldkant</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Vår Affärsidé</h3>
+                <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.95;">
+                    Att på ett prisvärt och kreativt sätt sälja generösa restaurang- och restaurangrelaterade upplevelser där vi skapar Guldkant på gästernas tillvaro.
+                </p>
+                <p style="margin-top: 20px; font-size: 1.1rem; opacity: 0.8;">
+                    <strong>Kärnvärden:</strong> Gemenskap, Generositet, Glädje
+                </p>
+            </div>
+
+            <h3 style="margin: 40px 0 25px 0; font-size: 1.8rem;">Långsiktiga Mål (3 år)</h3>
+            
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Finansiellt Mål</h4>
+                    <p>Minst <strong>15% lönsamhet</strong> och positivt kassaflöde varje säsong. Öka omsättningen med 10% årligen.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Gästupplevelse</h4>
+                    <p>Minnesvärdaupplevelser året runt. Minst <strong>4 stjärnor</strong> på Google och TripAdvisor. 10% fler recensioner.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Team & Kultur</h4>
+                    <p>Stabil, engagerad personal med tydliga ansvarsområden. Minst 1 kompetensutvecklingsinsats per anställd/år.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 40px 0 20px 0;">Ekonomisk Målbild</h3>
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar" style="height: 60%;">
+                        <div class="bar-value">-2%</div>
+                        <div class="bar-label">Personalkostnad</div>
+                    </div>
+                    <div class="bar" style="height: 55%;">
+                        <div class="bar-value">-2%</div>
+                        <div class="bar-label">Råvarukostnad</div>
+                    </div>
+                    <div class="bar" style="height: 80%;">
+                        <div class="bar-value">+10%</div>
+                        <div class="bar-label">Omsättning</div>
+                    </div>
+                    <div class="bar" style="height: 45%;">
+                        <div class="bar-value">+6%</div>
+                        <div class="bar-label">Vinst</div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--gray); margin-top: 40px; font-style: italic;">
+                    Målsättningar för kommande 12 månader
+                </p>
+            </div>
+        </div>
+
+        <!-- STEG 1: OPERATIV NÄRVARO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-title">
+                    <h2>Operativ Närvaro</h2>
+                    <div class="subtitle">Kultur, trygghet och kvalitet genom ägarnärvaro</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Ägartimmar/vecka</div>
+                    <div class="kpi-value">20-30h</div>
+                    <div class="kpi-target">Mål: Kultur & kvalitet</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Personalkostnad</div>
+                    <div class="kpi-value">-2%</div>
+                    <div class="kpi-target">Reduktion från nuläge</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Timgap</div>
+                    <div class="kpi-value">30h</div>
+                    <div class="kpi-target">Stab vs Förbrukning</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Strategi</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Kultur & Kvalitet</h4>
+                        <ul>
+                            <li>Fokusera på det vi gör bäst</li>
+                            <li>Coachande ledarskap i drift</li>
+                            <li>Föregå med exempel</li>
+                            <li>Bygga teamanda</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Täcka Gap</h4>
+                        <ul>
+                            <li>Smart schemaläggning</li>
+                            <li>Minska behov av extratimmar</li>
+                            <li>Optimera grundstaben</li>
+                            <li>Säsongsanpassa bemanning</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Gästförtroende</h4>
+                        <ul>
+                            <li>Direktkontakt med gäster</li>
+                            <li>Agera på feedback omedelbart</li>
+                            <li>Visa närvaro på golvet</li>
+                            <li>Lyssna och utveckla</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Månad 1-2: Kartläggning</h4>
+                    <ul>
+                        <li>Räkna ut exakt timbild och gap</li>
+                        <li>Skapa veckoschema för ägartimmar</li>
+                        <li>Definiera "operativ närvaro" konkret</li>
+                        <li>Kommunicera till personalen</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Månad 3-6: Implementation</h4>
+                    <ul>
+                        <li>Börja logga ägartimmar systematiskt</li>
+                        <li>Testa schema och justera</li>
+                        <li>Fokus på kultur, INTE brandbekämpning</li>
+                        <li>Utvärdera effekt på personalkostnad %</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Kontinuerlig närvaro enligt schema</li>
+                        <li>Minska timgap till under 20h/vecka</li>
+                        <li>Bygga stark företagskultur</li>
+                        <li>Mäta effekt på gästnöjdhet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 2: EVENT & SOCIALA MEDIER -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <div class="section-title">
+                    <h2>Event & Sociala Medier</h2>
+                    <div class="subtitle">Aktiv närvaro 52 veckor per år</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Events per månad</div>
+                    <div class="kpi-value">3-4</div>
+                    <div class="kpi-target">1 stort + 2-3 mindre</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">SoMe-tillväxt</div>
+                    <div class="kpi-value">+30%</div>
+                    <div class="kpi-target">Följare totalt/år</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Engagemang</div>
+                    <div class="kpi-value">Veckovis</div>
+                    <div class="kpi-target">3-5 inlägg/vecka</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Årshjul - Strategiskt Event-Schema</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Stora Dragplåster</h4>
+                        <ul>
+                            <li>Oktoberfest</li>
+                            <li>Temaveckor (säsong)</li>
+                            <li>Stora spelningar/artister</li>
+                            <li>Jubileum & special events</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Återkommande Koncept</h4>
+                        <ul>
+                            <li>Grillhelger</li>
+                            <li>Erkan-kvällar</li>
+                            <li>Veckans special</li>
+                            <li>Mindre spelningar</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Små Happenings</h4>
+                        <ul>
+                            <li>Temakvällar</li>
+                            <li>Vin/öl-provningar</li>
+                            <li>Gästspel & samarbeten</li>
+                            <li>Lokala producenter</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Sociala Medier-Strategi</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Före Event</h4>
+                    <p>Teaser-inlägg, detaljer, räkna ner. Skapa förväntan och FOMO. Boka tidigt!</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Under Event</h4>
+                    <p>Live-stories, fånga stämning, mat, människor. Visa vibe och glädje. Tagga gäster.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Efter Event</h4>
+                    <p>Tack-inlägg, highlights, recensioner. Återanvänd content. Planera nästa!</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Månad 1-2: Planering</h4>
+                    <ul>
+                        <li>Skapa 12-månaders årshjul med alla events</li>
+                        <li>Lista fungerande koncept att standardisera</li>
+                        <li>Planera Q1 och Q2 i detalj</li>
+                        <li>Sätt budget för betald annonsering</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Månad 3-6: Standardisering</h4>
+                    <ul>
+                        <li>Skapa eventmallar (checklista, inköp, kommunikation)</li>
+                        <li>Bygg contentplan för SoMe kopplat till årshjulet</li>
+                        <li>Lista 10-15 lokala influencers/ambassadörer</li>
+                        <li>Lansera första ambassadörssamarbeten</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Rullande planering 3 månader framåt</li>
+                        <li>3-5 SoMe-inlägg per vecka enligt plan</li>
+                        <li>Månadsvis utvärdering av events</li>
+                        <li>Kontinuerlig ambassadörsrelationer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 3: BESTÄLLNINGAR -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <div class="section-title">
+                    <h2>Beställningar som Speglar Budget</h2>
+                    <div class="subtitle">Vimmerby-modellen för smartare inköp</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Avtalsgrad</div>
+                    <div class="kpi-value">60-65%</div>
+                    <div class="kpi-target">Av alla inköp</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Råvarukostnad</div>
+                    <div class="kpi-value">-2%</div>
+                    <div class="kpi-target">Reduktion/år</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Sign-off</div>
+                    <div class="kpi-value">100%</div>
+                    <div class="kpi-target">Före beställning</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Vimmerby-Modellen</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Veckoprocess</h4>
+                        <ul>
+                            <li>Sammanställ veckans inköp</li>
+                            <li>Stäm av mot budget per kategori</li>
+                            <li>Sign-off från ansvarig VD/platschef</li>
+                            <li>Skicka beställning</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Smartare Inköp</h4>
+                        <ul>
+                            <li>Konkurrensutsätt leverantörer (MS, Dragon Port)</li>
+                            <li>Förhandlade beställningslistor</li>
+                            <li>Undvik ersättningsprodukter</li>
+                            <li>Nya och bättre spritavtal</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Kontroll & Uppföljning</h4>
+                        <ul>
+                            <li>Tydlig VEM beställer VAD</li>
+                            <li>Minska lager över tid</li>
+                            <li>Veckouppföljning varukostnad %</li>
+                            <li>Månatlig avtalsgrad-kontroll</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Månad 1: Kartläggning</h4>
+                    <ul>
+                        <li>Dokumentera nuvarande beställningsrutiner</li>
+                        <li>Identifiera VEM beställer VAD</li>
+                        <li>Granska nuvarande avtalsgrad</li>
+                        <li>Lista alla leverantörer och avtalsvillkor</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Månad 2-3: Vimmerby-modellen</h4>
+                    <ul>
+                        <li>Skapa mall för veckobeställning mot budget</li>
+                        <li>Utbilda beställare i nya rutinen</li>
+                        <li>Sätt budgetgränser per kategori</li>
+                        <li>Börja förhandla avtal med leverantörer</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>100% sign-off på alla beställningar</li>
+                        <li>Nå 60-65% avtalsgrad</li>
+                        <li>Kontinuerlig leverantörsförhandling</li>
+                        <li>Minska varukostnad % med 2% årligen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 4: KOMPETENSFÖRDELNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <div class="section-title">
+                    <h2>Kompetensfördelning</h2>
+                    <div class="subtitle">Kartlägg och använd kompetens effektivt</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">IUP Klara</div>
+                    <div class="kpi-value">100%</div>
+                    <div class="kpi-target">Alla nyckelspelare</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Coaching/månad</div>
+                    <div class="kpi-value">1+</div>
+                    <div class="kpi-target">Per nyckelspelare</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Utbildning</div>
+                    <div class="kpi-value">1+</div>
+                    <div class="kpi-target">Insats/anställd/år</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Nyckelspelare Västervik</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 20px; opacity: 0.9;">
+                    Hanna, Ida, Dykarn, Martinex, Tessan, Jennie, Walker, Lova (sommar)
+                </p>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Individuella Utvecklingsplaner (IUP)</h4>
+                        <ul>
+                            <li>Nuvarande roll och ansvar</li>
+                            <li>Styrkor och utvecklingsområden</li>
+                            <li>3-5 mål för närmaste 6 månader</li>
+                            <li>Vision: Vad gör de sommaren 2027?</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Tydliga Arbetsbeskrivningar</h4>
+                        <ul>
+                            <li>Huvudsakliga ansvarsområden</li>
+                            <li>Mandat och befogenheter</li>
+                            <li>KPI:er för rollen</li>
+                            <li>Rapporteringsvägar</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Uppföljning & Coaching</h4>
+                        <ul>
+                            <li>Månatliga coachingsamtal</li>
+                            <li>Kvartalsvis IUP-utvärdering</li>
+                            <li>Coacha fram lösningar</li>
+                            <li>Fira framsteg</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Månad 1-2: Kartläggning</h4>
+                    <ul>
+                        <li>Lista alla nyckelspelare och deras roller</li>
+                        <li>Identifiera styrkor och utvecklingsområden</li>
+                        <li>Identifiera GAP: Vad ägs inte av någon?</li>
+                        <li>Skapa IUP-mall</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Månad 3-4: Implementation</h4>
+                    <ul>
+                        <li>1-on-1 med varje nyckelspelare (60 min)</li>
+                        <li>Gå igenom IUP tillsammans</li>
+                        <li>Tydliggör långsiktig betydelse</li>
+                        <li>Sätt mål tillsammans</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Månatliga coachingsamtal (30 min)</li>
+                        <li>Kvartalsvis IUP-genomgång</li>
+                        <li>Kontinuerlig utveckling</li>
+                        <li>Succession planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 5: BÖRJA SÄLJA -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <div class="section-title">
+                    <h2>Börja Sälja</h2>
+                    <div class="subtitle">Aggressiv försäljning av event och produkter</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Säljkontakter/vecka</div>
+                    <div class="kpi-value">20-30</div>
+                    <div class="kpi-target">Mail + Telefon + F2F</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Konvertering</div>
+                    <div class="kpi-value">5-10%</div>
+                    <div class="kpi-target">Kontakt → Bokning</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Omsättning från sälj</div>
+                    <div class="kpi-value">20%</div>
+                    <div class="kpi-target">Av total omsättning</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Säljprodukter</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Företagslunch</h4>
+                        <ul>
+                            <li>Veckomenyer till företag (torsdagar)</li>
+                            <li>Mötespaket med mat</li>
+                            <li>AW-erbjudanden</li>
+                            <li>Representation</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Event & Upplevelser</h4>
+                        <ul>
+                            <li>GG-middagar (exklusiva)</li>
+                            <li>Vinprovningar</li>
+                            <li>Specialmiddagar</li>
+                            <li>Invite-middagar</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Catering & Grupper</h4>
+                        <ul>
+                            <li>Företagscatering</li>
+                            <li>Personalklubbar (Munskänkarna)</li>
+                            <li>Studentfester</li>
+                            <li>Privata fester</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Säljprocess - 8 Steg</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1-2: Utse säljare & Identifiera målgrupper</h4>
+                    <ul>
+                        <li>Utse ansvarig säljare (X timmar/vecka)</li>
+                        <li>Bygg kontaktbank: Företag, personalklubbar, tidigare gäster</li>
+                        <li>Definiera produkter och priser</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>3-4: Utbilda & Planera</h4>
+                    <ul>
+                        <li>Utbilda säljaren: Produkter, priser, bokningsprocess</li>
+                        <li>Skapa säljscript/mallar (mail, telefon)</li>
+                        <li>Planera tid för aktiv försäljning</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>5-8: Lansera & Följ upp</h4>
+                    <ul>
+                        <li>Starta med 10-20 kontakter första veckan</li>
+                        <li>Skala upp till 20-30 kontakter/vecka</li>
+                        <li>Mät konvertering och ROI</li>
+                        <li>Utvärdera och optimera månadsvis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 6: UPPFÖLJNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <div class="section-title">
+                    <h2>Uppföljning, Identitet & Förtroende</h2>
+                    <div class="subtitle">Systematisk uppföljning utan micromanagement</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Uppgifter i tid</div>
+                    <div class="kpi-value">80%+</div>
+                    <div class="kpi-target">Slutförda enligt deadline</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Veckouppföljning</div>
+                    <div class="kpi-value">100%</div>
+                    <div class="kpi-target">Varje vecka 15 min</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Gästbetyg</div>
+                    <div class="kpi-value">4.0+</div>
+                    <div class="kpi-target">Google & TripAdvisor</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Uppföljningskedjan</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    Beslut → Dokumentation → Ansvarig → Deadline → Status → Uppföljning
+                </p>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Överenskommelselista</h4>
+                        <ul>
+                            <li>Varje beslut dokumenteras</li>
+                            <li>Tydlig ägare och deadline</li>
+                            <li>Status uppdateras veckovis</li>
+                            <li>Excel/Google Sheets</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Se – Rätta – Säkra</h4>
+                        <ul>
+                            <li>Fånga upp avvikelser i drift</li>
+                            <li>Rätta direkt (service, kvalitet)</li>
+                            <li>Säkra att det inte återkommer</li>
+                            <li>Dokumentera lärdom</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Förtroendeprodukter</h4>
+                        <ul>
+                            <li>Moule, Schnitzel, Pizza, Sushi</li>
+                            <li>Lördagsnätter & vibe</li>
+                            <li>Bygg menyer kring dessa</li>
+                            <li>Konsekvent kvalitet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Servicemanual & Identitet</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Välkomnande</h4>
+                    <p>Alla gäster hälsas på inom 30 sekunder. Leende, ögonkontakt, visa till bord. "Välkomna till Guldkant!"</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Service Standard</h4>
+                    <p>Vatten på bordet inom 2 min. Beställning inom 5 min. Dryck inom 5 min. Check-in efter 2 min: "Smakar det bra?"</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Vår Identitet</h4>
+                    <p>Varma, genuina, professionella. Vi bryr oss om våra gäster. Vi kommer ihåg stammisar. Vi är stolta över vår mat.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Vecka 1: Strukturera uppföljning</h4>
+                    <ul>
+                        <li>Skapa Överenskommelselista</li>
+                        <li>Sätt fast veckopunkt (dag/tid, 15 min)</li>
+                        <li>Kommunicera systemet till teamet</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Vecka 2-4: Identitet & Produkter</h4>
+                    <ul>
+                        <li>Granska servicemanualen</li>
+                        <li>Definiera lägstanivå för service</li>
+                        <li>Lista förtroendeprodukter</li>
+                        <li>Bygg menyer kring dessa</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Veckouppföljning varje vecka (15 min)</li>
+                        <li>"Se – Rätta – Säkra" dagligen</li>
+                        <li>Månatlig genomgång: Uppfyllelse i tid?</li>
+                        <li>Konsekvent kvalitet på förtroendeprodukter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 7: EKONOMISK ÅTERRAPPORTERING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <div class="section-title">
+                    <h2>Ekonomisk Återrapportering</h2>
+                    <div class="subtitle">Platschefer presenterar sina egna siffror</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Omsättning vs Budget</div>
+                    <div class="kpi-value">+/-5%</div>
+                    <div class="kpi-target">Acceptabel avvikelse</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Personalkostnad %</div>
+                    <div class="kpi-value">35-38%</div>
+                    <div class="kpi-target">Målintervall</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Varukostnad %</div>
+                    <div class="kpi-value">28-32%</div>
+                    <div class="kpi-target">Målintervall</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Varför Platschefer Presenterar</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Större Förståelse</h4>
+                        <ul>
+                            <li>Ekonomi och agerande har konsekvenser</li>
+                            <li>Dels positiva, dels negativa</li>
+                            <li>Ökad medvetenhet kring beslut</li>
+                            <li>Långsiktig kompetensökning</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Enklare Uppföljning</h4>
+                        <ul>
+                            <li>Lättare att följa upp budget</li>
+                            <li>Få men betydelsefulla beslut</li>
+                            <li>Snabbare reaktion på avvikelser</li>
+                            <li>Tydligare ansvar</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Chef växer</h4>
+                        <ul>
+                            <li>Större ansvar för ekonomin</li>
+                            <li>Växer i rollen</li>
+                            <li>Frigör tid för VD</li>
+                            <li>Fokus på återkoppling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Vad Ska Rapporteras Månatligen?</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Omsättning</h4>
+                    <p>Utfall vs budget. Avvikelse i kr och %. Kommentar: Varför blev det så?</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Kostnader</h4>
+                    <p>Personalkostnad % och Varuinköp % av omsättning. Jämför med budget. Förklara avvikelser.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Åtgärder Framåt</h4>
+                    <p>Föreslagen åtgärd eller justering. Vad ska vi göra annorlunda nästa månad? Konkreta planer.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Vecka 1-2: Skapa struktur</h4>
+                    <ul>
+                        <li>Definiera vilka nyckeltal platschef ska rapportera</li>
+                        <li>Skapa enkel mall för ekonomisk rapportering</li>
+                        <li>Bestäm: När ska rapportering ske? (vecka 1 varje månad)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Vecka 3-4: Utbildning & Första rapporteringen</h4>
+                    <ul>
+                        <li>Utbilda platschef i att läsa och tolka siffror</li>
+                        <li>Gå igenom mall tillsammans</li>
+                        <li>Första presentationen (med stöd)</li>
+                        <li>Coacha: Vad ser du? Vad kan du göra?</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Månatlig rapportering: Platschef presenterar själv</li>
+                        <li>VD fokuserar på återkoppling och strategi</li>
+                        <li>Kontinuerlig kompetensutveckling</li>
+                        <li>Minska budgetavvikelser över tid</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEG 8: TILLVÄXT -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <div class="section-title">
+                    <h2>Tillväxt på Nya Marknader</h2>
+                    <div class="subtitle">Kill your darlings - Organisk tillväxt</div>
+                </div>
+            </div>
+
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-title">Nya affärer</div>
+                    <div class="kpi-value">10-15%</div>
+                    <div class="kpi-target">Av total omsättning</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Externa event</div>
+                    <div class="kpi-value">2-4/mån</div>
+                    <div class="kpi-target">Catering, events</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Avvecklingar</div>
+                    <div class="kpi-value">1-2/år</div>
+                    <div class="kpi-target">Olönsamma produkter</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Nya Tillväxtmöjligheter - Västervik</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Nattklubb / After Sun</h4>
+                        <ul>
+                            <li>Öppet längre fredagar/lördagar</li>
+                            <li>DJ och dansing</li>
+                            <li>Yngre målgrupp (20-35 år)</li>
+                            <li>Kräver tillstånd och personal</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Catering</h4>
+                        <ul>
+                            <li>Företagslunch och mingel</li>
+                            <li>Bröllop och privata fester</li>
+                            <li>Herrgårdscatering</li>
+                            <li>Jaktmiddagar (höst/vinter)</li>
+                        </ul>
+                    </div>
+                    <div class="action-card">
+                        <h4>Studentfester & Grupper</h4>
+                        <ul>
+                            <li>Studentbal våren</li>
+                            <li>Fester under året</li>
+                            <li>Personalklubbar (Munskänkarna)</li>
+                            <li>Föreningar och klubbar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Granska Svaga Områden</h3>
+            <div class="goal-grid">
+                <div class="goal-card">
+                    <h4>Lunchservering</h4>
+                    <p><strong>Analys:</strong> Är den lönsam? Om nej: Höj pris, minska kostnader, öka volym ELLER avveckla.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Minnesstunder</h4>
+                    <p><strong>Problem:</strong> Ej uppdaterade på 2 år. <strong>Åtgärd:</strong> Uppdatera pris och innehåll eller avveckla.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>Andra Produkter</h4>
+                    <p>Lista alla produkter/tider som ger dåligt resultat. <strong>Beslut:</strong> Utveckla eller avveckla - inte status quo.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Implementeringstidslinje</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Månad 1: Kartläggning</h4>
+                    <ul>
+                        <li>Lista alla potentiella tillväxtområden</li>
+                        <li>Granska svaga områden (lönsamhet?)</li>
+                        <li>Prioritera 2-3 områden att fokusera på först</li>
+                        <li>Skapa affärsplan för varje initiativ</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Månad 2-3: Testa</h4>
+                    <ul>
+                        <li>Lansera första tillväxtinitiativet (pilot)</li>
+                        <li>Marknadsför via SoMe och säljkontakter</li>
+                        <li>Justera prissättning på svaga områden</li>
+                        <li>Mät omsättning och ROI</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Långsiktigt (År 1+):</h4>
+                    <ul>
+                        <li>Utvärdera: Fortsätta, utveckla eller avveckla?</li>
+                        <li>Skala upp det som fungerar</li>
+                        <li>Avveckla olönsamma produkter/tider</li>
+                        <li>Organisk tillväxt 10-15% av total omsättning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAMMANFATTNING -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">✓</div>
+                <div class="section-title">
+                    <h2>Sammanfattning</h2>
+                    <div class="subtitle">8 steg till framgång för Guldkant Västervik</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="margin-bottom: 25px; text-align: center;">Implementeringsstatus</h3>
+                <div style="margin: 30px 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">1. Operativ Närvaro</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">2. Event & SoMe</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">3. Beställningar</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">4. Kompetens</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">5. Försäljning</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">6. Uppföljning</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">7. Ekonomi</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-top: 20px;">
+                        <span style="font-weight: 600;">8. Tillväxt</span>
+                        <span style="color: var(--gold);">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="0%" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Nästa Steg</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95;">
+                    Börja med Steg 1, 3 och 6 (Grunden). Sedan Steg 4 och 7 (Struktur). Slutligen Steg 2, 5 och 8 (Tillväxt).
+                </p>
+                <p style="font-size: 1.1rem; opacity: 0.85;">
+                    <strong>Platschef:</strong> Erik → Lova (sommar)<br>
+                    <strong>Nyckelspelare:</strong> Hanna, Ida, Dykarn, Martinex, Tessan, Jennie, Walker, Lova<br>
+                    <strong>Målsättning:</strong> 15% lönsamhet, 4+ stjärnor, Gemenskap med Guldkant
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://raw.githubusercontent.com/nordsym/pitchdecks/refs/heads/main/guldkant-assets/Guldkant%20logga.svg" alt="Guldkant" class="footer-logo">
+        <h3>Back to Glory</h3>
+        <p style="font-size: 1.3rem; margin-top: 15px;">Guldkant Västervik | 8 steg. 1 mål.</p>
+        <p style="margin-top: 25px; opacity: 0.8;">Gemenskap med Guldkant</p>
+    </div>
+
+    <script>
+        // Animate progress bars on scroll
+        const progressBars = document.querySelectorAll('.progress-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width');
+                }
+            });
+        });
+
+        progressBars.forEach(bar => observer.observe(bar));
+
+        // Animate numbers counting up
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const finalValue = stat.textContent;
+            stat.textContent = '0';
+            setTimeout(() => {
+                stat.textContent = finalValue;
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>
